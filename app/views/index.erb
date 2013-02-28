@@ -1,35 +1,22 @@
-<style type="text/css">
-  .container {
-    margin: 20px auto;
-    width: 600px;
-    padding: 0px 20px 20px 20px;
-    border: 1px dotted black;
-  }
-  th {
-    text-align: left;
-  }
-</style>
 
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1>Welcome to Hacker News!</h1>
+  <p>Please enter your username and password</p>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <h4> <%=@require_reg ? @require_reg : @require_signin%> </h4>
+
+  <form action='/posts' method='post'>
+    <input type="field" name="username" placeholder="username"></input>
+    <br>
+    <input type="field" name="password" placeholder="password"></input>
+    <br>
+    <input type="submit" value="Log in!"></input>
+  </form>
+
+  <form action='/posts/signup' method='post'>
+    <input type="field" name="username" placeholder="username"></input><br>
+    <input type="field" name="password" placeholder="password"></input><br>
+    <input type="submit" value="Sign up!"></input>
+  </form>  
+
 </div>

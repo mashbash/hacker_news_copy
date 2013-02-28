@@ -1,0 +1,19 @@
+<h1>Welcome! <%= @name %> </h1>
+
+<h4>These are your posts:</h4>
+<br>
+<% @posts.each do |post| %>
+<div><%= post.title %></div>
+<div><%= post.content %></div>
+<br>
+<% end %>
+
+
+<h4>These are your comments:</h4>
+<br>
+<% @comments.each do |comment| %>
+<div><%= comment.content %></div>
+<br>
+<% end %>
+
+ 

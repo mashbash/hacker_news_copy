@@ -7,10 +7,19 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
 
   <title></title>
+
 </head>
 <body>
+  <% if session[:user_id]%>
+    <% user = User.find_by_id(session[:user_id])%>
+    <p style = 'float:right'><a href='/user/<%=session[:user_id]%>'><%= user.username%></a></p>
+    <form style = 'float:right' action="/user/logout" method="post">
+      <input type="submit" value="logout">
+    </form>
+  <% end %>
   <%= yield %>
 </body>
 </html>
