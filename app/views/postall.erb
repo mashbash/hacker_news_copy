@@ -1,16 +1,17 @@
 <form method='post' action='/posts/create' >
-  <input type='field' placeholder='Post Title' name='title'/>
-  <input type='submit' value="Post!"/>
+  <input type='field' placeholder='Post Title' name='title'/> 
   <br>
   <textarea cols=60 rows=12 placeholder='Post Text' name='content'></textarea>
+  <br>
+  <input type='submit' value="Post!"/>
 </form>
 
 <!-- put in votepoint order later -->
 <% @posts.each do |post| %>
   <% user = User.find_by_id(post.user_id)%>
   <form action="/posts/vote" method="post">
-    <h3> <input type= "submit" value="<%=post.postvote_count%>">
-         <input type= "hidden" value="<%=post%>"> #BUGBUG
+    <h3> <input type= "submit" name="postvote_count"value="<%=post.postvote_count%>">
+         <input type= "hidden" name="post_id" value='<%=post.id%>'>
     -- <a href='/posts/<%= post.id %>'><%= post.title %></a> -- <%= user.username %> </h3>
   </form>
   <p>   <%= post.content %> </p>

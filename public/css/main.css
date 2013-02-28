@@ -1,9 +1,48 @@
-  .container {
-    margin: 20px auto;
-    width: 600px;
-    padding: 0px 20px 20px 20px;
-    border: 1px dotted black;
-  }
-  th {
-    text-align: left;
-  }
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+  background: #DDDDDD;
+}
+th {
+  text-align: left;
+}
+
+#error {
+  color:red;
+}
+
+.login {
+  padding: 10px;
+}
+
+.signin {
+  padding: 10px;
+}
+
+.login input {
+  margin: 2px;
+  padding: 10px;
+}
+
+.signin input {
+  margin: 2px; 
+  padding: 10px; 
+}
+
+#header {
+  background: #DDDDDD;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+#header p {
+  display:inline;
+}
+
+#header form {
+  float:right;
+}

@@ -3,19 +3,19 @@
   <h1>Welcome to Hacker News!</h1>
   <p>Please enter your username and password</p>
 
-  <h4> <%=@require_reg ? @require_reg : @require_signin%> </h4>
+  <h4 id ='error'> <%=@require_reg ? @require_reg : @require_signin%> </h4>
 
-  <form action='/posts' method='post'>
+  <form class ='login' action='/posts' method='post'>
     <input type="field" name="username" placeholder="username"></input>
     <br>
-    <input type="field" name="password" placeholder="password"></input>
+    <input type="password" name="password" placeholder="password"></input>
     <br>
     <input type="submit" value="Log in!"></input>
   </form>
 
-  <form action='/posts/signup' method='post'>
+  <form class ='signin' action='/posts/signup' method='post'>
     <input type="field" name="username" placeholder="username"></input><br>
-    <input type="field" name="password" placeholder="password"></input><br>
+    <input type="password" name="password" placeholder="password"></input><br>
     <input type="submit" value="Sign up!"></input>
   </form>  
 

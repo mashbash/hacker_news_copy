@@ -13,7 +13,11 @@
 
 <% @comments.each do |comment| %>
   <% user = User.find_by_id(comment.user_id)%>
-  <h5><%=user.username%></h5>
+  <form action="/posts/comments/vote" method="post">
+  <h5><input type= "submit" name="commentvote_count"value="<%=comment.commentvote_count%>">
+         <input type= "hidden" name="comment_id" value='<%=comment.id%>'>
+    -- <%=user.username%></h5>
+  </form>
   <p><%=comment.content%></p>
 <% end %>
 

@@ -12,22 +12,22 @@ post '/posts' do
   end   
 end
 
-get '/posts/all' do
-  @posts = Post.all
-  erb :postall
-end
-
 post '/posts/signup' do
   user_id = User.find_by_username(params[:username])
   if user_id.nil?
     new_user = User.new(username: params[:username], password: params[:password])
     new_user.save
-    redirect 'posts/all'
+    @require_signin = "You've registered! Now sign in!"
+    erb :index
   else
     @require_signin = "You already have an account. Please sign in."
     erb :index
   end
+end
 
+get '/posts/all' do
+  @posts = Post.order('postvote_count desc')
+  erb :postall
 end
 
 post '/posts/create' do
@@ -38,17 +38,30 @@ end
 
 get '/posts/:id' do
   @post = Post.find_by_id(params[:id])
-  @comments = Comment.where(:post_id => @post.id)
+  @comments = Comment.where(:post_id => @post.id).order('commentvote_count desc')
   erb :postpage
 end
 
 post '/posts/vote' do
-  puts params
-  puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-  @post = params[:post]
-  @postvote_new = Postvote.new(user_id: session[:user_id], post_id: @post.id) 
-  @postvote_new.save
-  @post.postvote += 1
+  @post_id = params[:post_id]
+  @post = Post.find_by_id(@post_id)
+  @postvote_new = Postvote.new(user_id: session[:user_id], post_id: @post_id) 
+  if @postvote_new.save
+    @post.postvote_count += 1
+    @post.save
+  end
   redirect '/posts/all'
+end
+
+post '/posts/comments/vote' do
+  @comment_id = params[:comment_id]
+  @comment = Comment.find_by_id(@comment_id)
+  @commentvote_new = Commentvote.new(user_id: session[:user_id], comment_id: @comment_id) 
+  if @commentvote_new.save
+    @comment.commentvote_count += 1
+    @comment.save
+  end
+  redirect "/posts/#{@comment.post_id}"
+
 end
 

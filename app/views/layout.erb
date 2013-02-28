@@ -13,12 +13,14 @@
 
 </head>
 <body>
-  <% if session[:user_id]%>
+  <% if session[:user_id] %>
     <% user = User.find_by_id(session[:user_id])%>
-    <p style = 'float:right'><a href='/user/<%=session[:user_id]%>'><%= user.username%></a></p>
-    <form style = 'float:right' action="/user/logout" method="post">
+    <div id ='header'>
+    <p>Welcome, <a href='/user/<%=session[:user_id]%>'><%= user.username%></a>!</p>
+    <form action="/user/logout" method="post">
       <input type="submit" value="logout">
     </form>
+  </div>
   <% end %>
   <%= yield %>
 </body>

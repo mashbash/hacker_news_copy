@@ -5,4 +5,5 @@ class Post < ActiveRecord::Base
 
   validates :title, :uniqueness => true
   validates :title, :content, :user_id, :presence => true
+
 end
