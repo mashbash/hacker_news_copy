@@ -8,6 +8,9 @@
   -->
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/main.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+  <script src="/js/application.js"></script>
 
   <title></title>
 
@@ -16,11 +19,13 @@
   <% if session[:user_id] %>
     <% user = User.find_by_id(session[:user_id])%>
     <div id ='header'>
-    <p>Welcome, <a href='/user/<%=session[:user_id]%>'><%= user.username%></a>!</p>
-    <form action="/user/logout" method="post">
-      <input type="submit" value="logout">
-    </form>
-  </div>
+      <% if user %>  
+        <p>Welcome, <a href='/user/<%=session[:user_id]%>'><%= user.username%></a>!</p>
+        <form action="/user/logout" method="post">
+          <input type="submit" value="logout">
+        </form>
+      <% end %>
+    </div>
   <% end %>
   <%= yield %>
 </body>

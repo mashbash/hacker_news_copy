@@ -43,14 +43,19 @@ get '/posts/:id' do
 end
 
 post '/posts/vote' do
+  content_type 'application/json'
   @post_id = params[:post_id]
   @post = Post.find_by_id(@post_id)
   @postvote_new = Postvote.new(user_id: session[:user_id], post_id: @post_id) 
-  if @postvote_new.save
+  if @postvote_new.save #returns true if saved, false if not
     @post.postvote_count += 1
     @post.save
+    # status 200 #this is means send to ajax that it's a successful response
+    { :post_id => @post.id, :post_count => @post.postvote_count }.to_json
+  else
+    # status 422  
+    { :message => "You can't vote on a post more than once!"}.to_json
   end
-  redirect '/posts/all'
 end
 
 post '/posts/comments/vote' do

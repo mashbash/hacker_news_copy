@@ -10,7 +10,7 @@
 <% @posts.each do |post| %>
   <% user = User.find_by_id(post.user_id)%>
   <form action="/posts/vote" method="post">
-    <h3> <input type= "submit" name="postvote_count"value="<%=post.postvote_count%>">
+    <h3> <input id="<%= post.id %>" class="post" type= "submit" name="postvote_count" value="<%=post.postvote_count%>">
          <input type= "hidden" name="post_id" value='<%=post.id%>'>
     -- <a href='/posts/<%= post.id %>'><%= post.title %></a> -- <%= user.username %> </h3>
   </form>
