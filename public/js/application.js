@@ -5,7 +5,7 @@ $(document).ready(function(){
       type:"post", //can be get or post
       url:"/posts/vote", //go to this url
       data: {post_id: $(this).siblings().val()}, //data sent to the controller/server //AA: if pull form, can do serialize data instead of having to do this
-      dataType: "json" //sending data in json format to the controller/server
+      dataType: "json" //expecting to receive data in json format from the controller/server
     }).success(function(response) { 
       console.log(response);
       var post_id = response.post_id;
